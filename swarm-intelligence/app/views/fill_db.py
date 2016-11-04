@@ -1,8 +1,8 @@
 from app.models import user
-from app.views import user_path
+from app.views import view_path as user_path
 
 
-@user_path('/filldb/')
+@user_path.route('/filldb/')
 def fill_db():
     felix = user.User(1, 'Felix')
     tobias = user.User(2, 'Tobias')

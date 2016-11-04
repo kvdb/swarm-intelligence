@@ -1,4 +1,4 @@
-from app.views import user_path
+from app.views import view_path as user_path
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 from app.models import user
