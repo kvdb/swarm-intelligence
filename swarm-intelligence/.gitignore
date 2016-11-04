@@ -4,6 +4,11 @@
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/vcs.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea.swarm-intelligence.iml
+.idea/
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
