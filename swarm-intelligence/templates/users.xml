@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+{% for item in data %}
+    <user>
+        <id>{{ item[0] }}</id>
+        <firstname>{{ item[1] }}</firstname>
+    </user>
+{% endfor %}
+</users>
+
+{# {{data|tojson}} #}
