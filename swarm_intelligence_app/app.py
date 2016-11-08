@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_restful import Api
-from swarm_intelligence.models.models import db
-from swarm_intelligence.resources import user
-from swarm_intelligence.common import errors
-from swarm_intelligence.common import handlers
+from swarm_intelligence_app.models.models import db
+from swarm_intelligence_app.resources import user
+from swarm_intelligence_app.common import errors
+from swarm_intelligence_app.common import handlers
 
 def load_config(app):
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost:3306/swarm_intelligence_test'
