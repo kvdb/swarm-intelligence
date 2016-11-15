@@ -3,6 +3,7 @@ from swarm_intelligence_app.models.models import db
 from swarm_intelligence_app.models.user import User as UserModel
 from swarm_intelligence_app.common import errors
 from swarm_intelligence_app.common.oauth import auth
+from flask import g
 
 parser = reqparse.RequestParser(bundle_errors=True)
 parser.add_argument('firstname', required=True)
@@ -13,21 +14,23 @@ parser.add_argument('email', required=True)
 class UserList(Resource):
     @auth.login_required
     def post(self):
-        args = parser.parse_args()
-        user = UserModel(
-            args['firstname'],
-            args['lastname'],
-            args['email']
-        )
-        db.session.add(user)
-        db.session.commit()
-        return {'users': 'create'}
+        user = UserModel.query.filter_by(googleid=g.data["sub"]).first()
+        print(g.data)
+        print(user)
+        if user is not None:
+            return {"Message":"User already exists"}
+        else:
+            db.session.add(UserModel(g.data["name"], g.data["family_name"], g.data["email"], g.data["sub"]))
+            db.session.commit()
+            return {'users': 'create'}
 
     @auth.login_required
     def get(self):
         users = UserModel.query.all()
         list = [i.serialize for i in users]
+        print(g.data)
         return {'users': list}
+
 
 class User(Resource):
     @auth.login_required
